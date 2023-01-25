@@ -7,7 +7,10 @@
   "author": "Ekliptor",
   "license": "AGPL",
   "scripts": {
-    "watch": "./node_modules/.bin/webpack --progress --colors --watch"
+    "watch": "./node_modules/.bin/webpack --progress --colors --watch",
+    "tsc": "tsc",
+    "dev": "cd build && node app.js --debug --config=Noop --trader=RealTimeTrader --noUpdate --noBrowser",
+    "docker": "docker-compose up"
   },
   "homepage": "https://wolfbot.org",
   "repository": "https://github.com/Ekliptor/WolfBot.git",
@@ -61,6 +64,7 @@
     "ws": "^5.1.1"
   },
   "devDependencies": {
+    "@types/": "ekliptor/bit-models",
     "@types/ace": "0.0.33",
     "@types/async": "^2.0.38",
     "@types/autobahn": "^0.9.35",

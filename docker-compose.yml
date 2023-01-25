@@ -1,18 +1,32 @@
-version: "3"
+# version: "3"
+# services:
+  # wolfbot:
+  #   build: .
+  #   image: wolfbot-docker/latest
+  #   restart: always
+  #   ports:
+  #     - "8331:8331"
+  #     - "8332:8332"
+  #   depends_on:
+  #     - mongodb
+  # mongodb:
+  #   image: mongo:latest
+  #   environment:
+  #     - MONGO_DATA_DIR=/data/db
+  #     - MONGO_LOG_DIR=/dev/null
+  #   volumes:
+  #     - ./mongodb/data/db:/data/db
+version: '3.1'
 services:
-  wolfbot:
-    build: .
-    image: wolfbot-docker/latest
+  mongo:
+    image: mongo
+    container_name: "mongo"
     restart: always
-    ports:
-      - "8331:8331"
-      - "8332:8332"
-    depends_on:
-      - mongodb
-  mongodb:
-    image: mongo:latest
     environment:
-      - MONGO_DATA_DIR=/data/db
-      - MONGO_LOG_DIR=/dev/null
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: wolfbot
     volumes:
-      - ./mongodb/data/db:/data/db
+      - './dockervolume/mongodb:/data/db'
+      # - ./mongodb/data/db:/data/db
+    ports:
+      - 27017:27017
